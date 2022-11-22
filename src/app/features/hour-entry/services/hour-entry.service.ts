@@ -7,8 +7,8 @@ import { generateGuid } from '../../../shared/utils';
 import { Project, ProjectEntry } from '../models';
 
 const AVAILABLE_PROJECTS: Project[] = [
-  { name: 'General Development Scheme', code: 'GENDS' },
-  { name: 'General Meetings', code: 'GENME' },
+  { name: 'Angular Library', code: 'NGLIB' },
+  { name: 'Meetings', code: 'MEETI' },
   { name: 'Awesome Workshop', code: 'AWORK' },
 ];
 
