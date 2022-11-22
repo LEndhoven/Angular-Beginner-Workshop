@@ -99,7 +99,9 @@ export class HourEntryComponent implements OnInit, OnDestroy {
       map((projectEntries) =>
         projectEntries.map((projectEntry) => ({
           ...projectEntry,
-          cssClass: PROJECT_CODE_TO_CLASS.get(projectEntry.projectCode),
+          cssClass: projectEntry.projectCode
+            ? PROJECT_CODE_TO_CLASS.get(projectEntry.projectCode)
+            : undefined,
         }))
       ),
       cache()
@@ -118,7 +120,9 @@ export class HourEntryComponent implements OnInit, OnDestroy {
           .reduce(
             (totalMinutes, projectEntry) =>
               totalMinutes +
-              convertTimeExpressinToMinutes(projectEntry.timeSpent),
+              (projectEntry.timeSpent !== undefined
+                ? convertTimeExpressinToMinutes(projectEntry.timeSpent)
+                : 0),
             0
           )
       ),
