@@ -11,10 +11,7 @@
   (cdkDropListDropped)="droppedProjectEntry($event)"
 >
   <div
-    *ngFor="
-      let projectEntry of projectEntryViewModels;
-      trackBy: trackById
-    "
+    *ngFor="let projectEntry of projectEntryViewModels; trackBy: trackById"
     class="project-entry"
   >
     <app-project-entry></app-project-entry>
@@ -22,10 +19,7 @@
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button
-        mat-menu-item
-        (click)="duplicateProjectEntry(projectEntry)"
-      >
+      <button mat-menu-item (click)="duplicateProjectEntry(projectEntry)">
         <mat-icon>content_copy</mat-icon>
         <span>Duplicate</span>
       </button>

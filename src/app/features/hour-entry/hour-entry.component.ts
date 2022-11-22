@@ -27,7 +27,8 @@ interface ProjectEntryViewModel extends ProjectEntry {
 }
 
 const PROJECT_CODE_TO_CLASS = new Map<string, string>([
-  ['GENDS', 'is-gends'],
+  ['NGLIB', 'is-nglib'],
+  ['MEETI', 'is-meetings'],
   ['AWORK', 'is-awesome-workshop'],
 ]);
 
