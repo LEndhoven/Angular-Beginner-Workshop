@@ -49,18 +49,22 @@ const TIME_ENTRIES = [...Array(33).keys()].map(
   ],
 })
 export class ProjectEntryComponent implements OnInit, OnDestroy {
-  @Input() public projectEntry: ProjectEntry;
+  @Input() public projectEntry?: ProjectEntry;
 
-  public readonly projectControl = new FormControl<string | Project>('', [
-    Validators.required,
-  ]);
+  public readonly projectControl = new FormControl<string | Project>('', {
+    validators: [Validators.required],
+    nonNullable: true,
+  });
 
-  public readonly descriptionControl = new FormControl<string>('', [
-    Validators.required,
-  ]);
-  public readonly spentTimeControl = new FormControl<string>('', [
-    Validators.required,
-  ]);
+  public readonly descriptionControl = new FormControl<string>('', {
+    validators: [Validators.required],
+    nonNullable: true,
+  });
+
+  public readonly spentTimeControl = new FormControl<string>('', {
+    validators: [Validators.required],
+    nonNullable: true,
+  });
 
   private readonly subscriptions = new Subscription();
 
@@ -72,16 +76,18 @@ export class ProjectEntryComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.hourEntryService.updateProjectEntry({
-      id: this.projectEntry.id,
-      date: this.projectEntry.date,
-      projectCode:
-        typeof this.projectControl.value === 'string'
-          ? undefined
-          : this.projectControl.value.code,
-      description: this.descriptionControl.value,
-      timeSpent: this.spentTimeControl.value,
-    });
+    if (this.projectEntry) {
+      this.hourEntryService.updateProjectEntry({
+        id: this.projectEntry.id,
+        date: this.projectEntry.date,
+        projectCode:
+          typeof this.projectControl.value === 'string'
+            ? undefined
+            : this.projectControl.value.code,
+        description: this.descriptionControl.value,
+        timeSpent: this.spentTimeControl.value,
+      });
+    }
 
     this.subscriptions.unsubscribe();
   }
@@ -132,15 +138,17 @@ export class ProjectEntryComponent implements OnInit, OnDestroy {
       this.spentTimeControl.value$,
     ])
       .pipe(skip(1))
-      .subscribe(([project, description, spentTime]) =>
-        this.hourEntryService.updateProjectEntry({
-          id: this.projectEntry.id,
-          date: this.projectEntry.date,
-          projectCode: typeof project === 'string' ? undefined : project.code,
-          description: description,
-          timeSpent: spentTime,
-        })
-      );
+      .subscribe(([project, description, spentTime]) => {
+        if (this.projectEntry) {
+          this.hourEntryService.updateProjectEntry({
+            id: this.projectEntry.id,
+            date: this.projectEntry.date,
+            projectCode: typeof project === 'string' ? undefined : project.code,
+            description: description,
+            timeSpent: spentTime,
+          });
+        }
+      });
   }
 
   @Memoized private get projectEntry$(): Observable<ProjectEntry> {

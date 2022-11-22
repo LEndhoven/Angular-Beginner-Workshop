@@ -37,7 +37,8 @@ import { HourEntryService } from '../../services/hour-entry.service';
 })
 export class DateSelectorComponent implements OnInit, OnDestroy {
   public readonly dateControl = new FormControl<DateTime>(
-    getDateOnly(DateTime.now().startOf('day'))
+    getDateOnly(DateTime.now().startOf('day')),
+    { nonNullable: true }
   );
 
   private readonly subscriptions = new Subscription();
