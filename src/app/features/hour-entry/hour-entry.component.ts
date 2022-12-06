@@ -20,7 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { DateSelectorComponent } from './components/date-selector/date-selector.component';
 import { ProjectEntryComponent } from './components/project-entry/project-entry.component';
-import { TimeFormatPipeModule } from '../../shared/pipes/time-format-pipe.module';
 
 interface ProjectEntryViewModel extends ProjectEntry {
   cssClass: string | undefined;
@@ -49,8 +48,6 @@ const PROJECT_CODE_TO_CLASS = new Map<string, string>([
 
     DateSelectorComponent,
     ProjectEntryComponent,
-
-    TimeFormatPipeModule,
   ],
 })
 export class HourEntryComponent implements OnInit, OnDestroy {
