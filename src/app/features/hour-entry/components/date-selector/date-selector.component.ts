@@ -1,10 +1,5 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -12,9 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { DateTime } from 'luxon';
-import { FormControl } from 'ngx-typesafe-forms';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { FormControl } from 'src/app/shared/forms/form-control';
 
 import { HourEntryService } from '../../services/hour-entry.service';
 
@@ -37,8 +32,7 @@ import { HourEntryService } from '../../services/hour-entry.service';
 })
 export class DateSelectorComponent implements OnInit, OnDestroy {
   public readonly dateControl = new FormControl<DateTime>(
-    getDateOnly(DateTime.now().startOf('day')),
-    { nonNullable: true }
+    getDateOnly(DateTime.now().startOf('day'))
   );
 
   private readonly subscriptions = new Subscription();

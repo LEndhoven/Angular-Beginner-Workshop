@@ -1,31 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
-import { ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormControl } from 'ngx-typesafe-forms';
-import {
-  combineLatest,
-  filter,
-  map,
-  Observable,
-  skip,
-  Subscription,
-  withLatestFrom,
-} from 'rxjs';
-import { observeProperty } from '../../../../shared/rxjs-utils/observe-property';
-import { Project, ProjectEntry } from '../../models';
-import { Memoized } from '../../../../shared/decorators';
-import { notUndefined } from '../../../../shared/predicates';
-import { HourEntryService } from '../../services/hour-entry.service';
-import { cache } from '../../../../shared/rxjs-utils';
 import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { combineLatest, filter, map, Observable, skip, Subscription, withLatestFrom } from 'rxjs';
+import { FormControl } from 'src/app/shared/forms/form-control';
+
+import { Memoized } from '../../../../shared/decorators';
+import { notUndefined } from '../../../../shared/predicates';
+import { cache } from '../../../../shared/rxjs-utils';
+import { observeProperty } from '../../../../shared/rxjs-utils/observe-property';
+import { Project, ProjectEntry } from '../../models';
+import { HourEntryService } from '../../services/hour-entry.service';
 
 const TIME_ENTRIES = [...Array(33).keys()].map(
   (keyIndex) =>
@@ -51,20 +38,9 @@ const TIME_ENTRIES = [...Array(33).keys()].map(
 export class ProjectEntryComponent implements OnInit, OnDestroy {
   @Input() public projectEntry?: ProjectEntry;
 
-  public readonly projectControl = new FormControl<string | Project>('', {
-    validators: [Validators.required],
-    nonNullable: true,
-  });
-
-  public readonly descriptionControl = new FormControl<string>('', {
-    validators: [Validators.required],
-    nonNullable: true,
-  });
-
-  public readonly spentTimeControl = new FormControl<string>('', {
-    validators: [Validators.required],
-    nonNullable: true,
-  });
+  public readonly projectControl = new FormControl<string | Project>('', { validators: [Validators.required] });
+  public readonly descriptionControl = new FormControl<string>('', { validators: [Validators.required] });
+  public readonly spentTimeControl = new FormControl<string>('', { validators: [Validators.required] });
 
   private readonly subscriptions = new Subscription();
 
