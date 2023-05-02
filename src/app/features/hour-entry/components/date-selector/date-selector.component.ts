@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -9,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { DateTime } from 'luxon';
 import { Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { FormControl } from 'src/app/shared/forms/form-control';
+import { FormControl } from '../../../../shared/forms/form-control';
 
 import { HourEntryService } from '../../services/hour-entry.service';
 

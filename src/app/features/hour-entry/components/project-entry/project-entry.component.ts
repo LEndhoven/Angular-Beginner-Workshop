@@ -1,11 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { combineLatest, filter, map, Observable, skip, Subscription, withLatestFrom } from 'rxjs';
-import { FormControl } from 'src/app/shared/forms/form-control';
+import {
+  combineLatest,
+  filter,
+  map,
+  Observable,
+  skip,
+  Subscription,
+  withLatestFrom,
+} from 'rxjs';
+import { FormControl } from '../../../../shared/forms/form-control';
 
 import { Memoized } from '../../../../shared/decorators';
 import { notUndefined } from '../../../../shared/predicates';
@@ -38,9 +52,15 @@ const TIME_ENTRIES = [...Array(33).keys()].map(
 export class ProjectEntryComponent implements OnInit, OnDestroy {
   @Input() public projectEntry?: ProjectEntry;
 
-  public readonly projectControl = new FormControl<string | Project>('', { validators: [Validators.required] });
-  public readonly descriptionControl = new FormControl<string>('', { validators: [Validators.required] });
-  public readonly spentTimeControl = new FormControl<string>('', { validators: [Validators.required] });
+  public readonly projectControl = new FormControl<string | Project>('', {
+    validators: [Validators.required],
+  });
+  public readonly descriptionControl = new FormControl<string>('', {
+    validators: [Validators.required],
+  });
+  public readonly spentTimeControl = new FormControl<string>('', {
+    validators: [Validators.required],
+  });
 
   private readonly subscriptions = new Subscription();
 
