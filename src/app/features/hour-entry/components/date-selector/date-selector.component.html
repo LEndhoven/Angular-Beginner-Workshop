@@ -4,8 +4,8 @@
 <mat-form-field appearance="fill" class="date-input">
   <mat-label>Entry Date</mat-label>
   <input matInput [matDatepicker]="picker" [formControl]="dateControl" />
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
+  <mat-datepicker-toggle matSuffix [for]="picker" />
+  <mat-datepicker #picker />
 </mat-form-field>
 <button mat-icon-button class="next-button">
   <mat-icon>chevron_right</mat-icon>

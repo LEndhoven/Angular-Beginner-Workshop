@@ -1,20 +1,18 @@
 <div class="total-time">
   <span>Total time: </span>
-  <span *ngIf="totalTimeInMinutes$ | async as totalTimeInMinutes">{{
-    totalTimeInMinutes
-  }}</span>
+  @if (totalTimeInMinutes$ | async; as totalTimeInMinutes) {
+  <span>{{ totalTimeInMinutes }}</span>
+  }
 </div>
+@if (projectEntryViewModels$ | async; as projectEntryViewModels) {
 <div
-  *ngIf="projectEntryViewModels$ | async as projectEntryViewModels"
   class="drop-list"
   cdkDropList
   (cdkDropListDropped)="droppedProjectEntry($event)"
 >
-  <div
-    *ngFor="let projectEntry of projectEntryViewModels; trackBy: trackById"
-    class="project-entry"
-  >
-    <app-project-entry></app-project-entry>
+  @for (projectEntry of projectEntryViewModels; track projectEntry.id) {
+  <div class="project-entry">
+    <app-project-entry />
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
@@ -25,4 +23,6 @@
       </button>
     </mat-menu>
   </div>
+  }
 </div>
+}

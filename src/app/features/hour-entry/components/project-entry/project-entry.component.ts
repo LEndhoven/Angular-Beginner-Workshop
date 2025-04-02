@@ -37,9 +37,8 @@ const TIME_ENTRIES = [...Array(33).keys()].map(
 @Component({
   selector: 'app-project-entry',
   templateUrl: './project-entry.component.html',
-  styleUrls: ['./project-entry.component.scss'],
+  styleUrl: './project-entry.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

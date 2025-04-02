@@ -34,10 +34,8 @@ const PROJECT_CODE_TO_CLASS = new Map<string, string>([
 @Component({
   selector: 'app-hour-entry',
   templateUrl: './hour-entry.component.html',
-  styleUrls: ['./hour-entry.component.scss'],
+  styleUrl: './hour-entry.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [HourEntryService],
-  standalone: true,
   imports: [
     CommonModule,
 
@@ -46,9 +44,10 @@ const PROJECT_CODE_TO_CLASS = new Map<string, string>([
     MatIconModule,
     MatMenuModule,
 
-    DateSelectorComponent,
+    // DateSelectorComponent,
     ProjectEntryComponent,
   ],
+  providers: [HourEntryService],
 })
 export class HourEntryComponent implements OnInit, OnDestroy {
   private readonly subscriptions = new Subscription();

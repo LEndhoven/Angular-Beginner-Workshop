@@ -21,9 +21,8 @@ import { HourEntryService } from '../../services/hour-entry.service';
 @Component({
   selector: 'app-date-selector',
   templateUrl: './date-selector.component.html',
-  styleUrls: ['./date-selector.component.scss'],
+  styleUrl: './date-selector.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
