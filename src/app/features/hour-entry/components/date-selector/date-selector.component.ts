@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -39,9 +40,9 @@ export class DateSelectorComponent implements OnInit, OnDestroy {
     getDateOnly(DateTime.now().startOf('day'))
   );
 
-  private readonly subscriptions = new Subscription();
+  private readonly hourEntryService = inject(HourEntryService);
 
-  constructor(private readonly hourEntryService: HourEntryService) {}
+  private readonly subscriptions = new Subscription();
 
   public ngOnInit(): void {
     this.subscriptions.add(this.initializeDateControl());

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   Input,
   OnDestroy,
   OnInit,
@@ -61,9 +62,9 @@ export class ProjectEntryComponent implements OnInit, OnDestroy {
     validators: [Validators.required],
   });
 
-  private readonly subscriptions = new Subscription();
+  private readonly hourEntryService = inject(HourEntryService);
 
-  constructor(private readonly hourEntryService: HourEntryService) {}
+  private readonly subscriptions = new Subscription();
 
   public ngOnInit(): void {
     this.subscriptions.add(this.initializeInputFields());

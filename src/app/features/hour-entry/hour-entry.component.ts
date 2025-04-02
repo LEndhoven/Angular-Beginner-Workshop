@@ -2,6 +2,7 @@ import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -50,9 +51,9 @@ const PROJECT_CODE_TO_CLASS = new Map<string, string>([
   providers: [HourEntryService],
 })
 export class HourEntryComponent implements OnInit, OnDestroy {
-  private readonly subscriptions = new Subscription();
+  private readonly hourEntryService = inject(HourEntryService);
 
-  constructor(private readonly hourEntryService: HourEntryService) {}
+  private readonly subscriptions = new Subscription();
 
   public ngOnInit(): void {
     // Ensure always one entry is visible
